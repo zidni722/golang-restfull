@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut ico" type="image/x-ico" href="/favicon.ico" />
+    <title>{{ .Title }} - {{ .AppName }}</title>
+</head>
+<body>
+    <div>
+        <!-- Render the current template here -->
+        {{ yield }}
+        <hr />
+        <footer>
+            <p>&copy; 2019 - {{ .AppOwner }}</p>
+        </footer>
+    </div>
+</body>
+</html>
