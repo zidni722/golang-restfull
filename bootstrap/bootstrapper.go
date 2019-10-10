@@ -91,7 +91,7 @@ func (b *Bootstrapper) Configure(cfgs ...Configurator) {
 // Return itself.
 func (b *Bootstrapper) Bootstrap() *Bootstrapper {
 	b.SetupViews("./views")
-	b.SetupSessions(24*time.Hour, []byte("pawoon-api"), []byte("pawoon-api-key"))
+	b.SetupSessions(24*time.Hour, []byte("zidni-api"), []byte("zidni-api-key"))
 	b.SetupErrorHandlers()
 
 	// static files
