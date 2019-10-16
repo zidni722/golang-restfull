@@ -6,7 +6,7 @@ import (
 	"github.com/zidni722/golang-restfull/app/models"
 	"github.com/zidni722/golang-restfull/web/response"
 	golog "github.com/kataras/golog"
-	_interface "github.com/zidni722/golang-restfull/repositories/interface"
+	_interface "github.com/zidni722/golang-restfull/app/repositories/interface"
 	user_request "github.com/zidni722/golang-restfull/app/dto/request/crud"
 )
 

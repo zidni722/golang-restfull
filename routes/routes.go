@@ -35,10 +35,5 @@ func (r *Route) Configure(b *bootstrap.Bootstrapper) {
 	{
 		userController := controllers.NewUserController(r.Config.Database.DB, userRepository)
 		v1.Post("/create", userController.CreateUserHandler)
-		// products := v1.Party("/product")
-		// {
-		// 	productController := controllers.NewProductController(r.Config.Database.DB, productRepository)
-		// 	products.Get("/{productUuid:string}", productController.GetProductByUuid)
-		// }
 	}
 }
