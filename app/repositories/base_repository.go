@@ -3,5 +3,10 @@ package repositories
 import "github.com/jinzhu/gorm"
 
 type BaseRepository interface {
-	CreateUser(db *gorm.DB, entity interface{}) error
+	FindAll(db *gorm.DB, entities interface{}) error
+	FindById(db *gorm.DB, entity interface{}, id int) error
+	Create(db *gorm.DB, entity interface{}) error
+	NewRecord(db *gorm.DB, entity interface{}) bool
+	Update(db *gorm.DB, entity interface{}) error
+	Delete(db *gorm.DB, entity interface{}) error
 }
