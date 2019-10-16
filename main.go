@@ -2,8 +2,11 @@ package main
 
 import (
 	"fmt"
-	"github.com/zidni722/golang-restfull/bootstrap"
+
 	"github.com/spf13/viper"
+	"github.com/zidni722/golang-restfull/bootstrap"
+	"github.com/zidni722/golang-restfull/config"
+	"github.com/zidni722/golang-restfull/routes"
 )
 
 func newApp() *bootstrap.Bootstrapper {
@@ -36,6 +39,7 @@ func main() {
 	readConfig()
 
 	app := newApp()
+	port := viper.GetString("app.server_port")
 
 	cfg := config.New(app.Application)
 	cfg.SetupLog()
@@ -43,7 +47,9 @@ func main() {
 
 	setupRoute(app, cfg)
 
-	app.Listen(":9090")
+	fmt.Print("Application is running on port :" + port)
+
+	app.Listen(":" + port)
 
 	defer cfg.Database.DB.Close()
 }
