@@ -1,7 +1,7 @@
 package controllers
 
-import(
-	"github.com/kataras/iris"
+import (
+	"github.com/kataras/iris/v12"
 	"github.com/spf13/viper"
 )
 

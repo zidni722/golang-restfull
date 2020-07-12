@@ -2,7 +2,7 @@ package crud
 
 import (
 	"github.com/jinzhu/gorm"
-	"github.com/kataras/iris"
+	"github.com/kataras/iris/v12"
 	"github.com/zidni722/golang-restfull/app/dto/request"
 	_interface "github.com/zidni722/golang-restfull/app/repositories/interface"
 	"github.com/zidni722/golang-restfull/app/web/response"

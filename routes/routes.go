@@ -2,8 +2,7 @@ package routes
 
 import (
 	"github.com/iris-contrib/middleware/cors"
-	"github.com/kataras/iris"
-	"github.com/kataras/iris/context"
+	"github.com/kataras/iris/v12"
 	"github.com/zidni722/golang-restfull/app/web/controllers"
 	"github.com/zidni722/golang-restfull/bootstrap"
 	"github.com/zidni722/golang-restfull/config"
@@ -12,7 +11,7 @@ import (
 
 type Route struct {
 	Config      *config.Configuration
-	CorsHandler context.Handler
+	CorsHandler iris.Handler
 }
 
 func NewRoute(config *config.Configuration) *Route {

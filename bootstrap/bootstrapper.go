@@ -4,12 +4,11 @@ import (
 	"time"
 
 	"github.com/gorilla/securecookie"
-	"github.com/kataras/iris"
-	"github.com/kataras/iris/context"
-	"github.com/kataras/iris/middleware/logger"
-	"github.com/kataras/iris/middleware/recover"
-	"github.com/kataras/iris/sessions"
-	"github.com/kataras/iris/websocket"
+	"github.com/kataras/iris/v12"
+	"github.com/kataras/iris/v12/middleware/logger"
+	"github.com/kataras/iris/v12/middleware/recover"
+	"github.com/kataras/iris/v12/sessions"
+	"github.com/kataras/iris/v12/websocket"
 	"github.com/zidni722/golang-restfull/app/web/response"
 )
 
@@ -53,21 +52,17 @@ func (b *Bootstrapper) SetupSessions(expires time.Duration, cookieHashKey, cooki
 	})
 }
 
-// SetupWebsockets prepare the websocket server
-func (b *Bootstrapper) SetupWebsockets(endpoint string, onConnection websocket.ConnectionFunc) {
-	ws := websocket.New(websocket.Config{})
-	ws.OnConnection(onConnection)
+// SetupWebsockets prepares the websocket server.
+func (b *Bootstrapper) SetupWebsockets(endpoint string, handler websocket.ConnHandler) {
+	ws := websocket.New(websocket.DefaultGorillaUpgrader, handler)
 
-	b.Get(endpoint, ws.Handler())
-	b.Any("/iris-ws.js", func(context iris.Context) {
-		context.Write(websocket.ClientSource)
-	})
+	b.Get(endpoint, websocket.Handler(ws))
 }
 
 // SetupErrorHandlers prepares the http error handlers
 // `(context.StatusCodeNotSuccessful`,  which defaults to < 200 || >= 400 but you can change it).
 func (b *Bootstrapper) SetupErrorHandlers() {
-	b.OnErrorCode(response.INTERNAL_SERVER_ERROR, func(ctx context.Context) {
+	b.OnErrorCode(response.INTERNAL_SERVER_ERROR, func(ctx iris.Context) {
 		response.InternalServerErrorResponse(ctx, nil)
 	})
 }
@@ -96,7 +91,7 @@ func (b *Bootstrapper) Bootstrap() *Bootstrapper {
 
 	// static files
 	b.Favicon(StaticAssets + Favicon)
-	b.StaticWeb(StaticAssets[1:len(StaticAssets)-1], StaticAssets)
+	b.HandleDir(StaticAssets[1:len(StaticAssets)-1], StaticAssets)
 
 	// middleware, after static files
 	b.Use(recover.New())

@@ -1,7 +1,7 @@
 package response
 
 import (
-	"github.com/kataras/iris"
+	"github.com/kataras/iris/v12"
 	"github.com/pkg/errors"
 	"github.com/zidni722/golang-restfull/app/dto/response"
 )

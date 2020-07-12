@@ -3,7 +3,7 @@ package controllers
 import (
 	"github.com/jinzhu/gorm"
 	golog "github.com/kataras/golog"
-	"github.com/kataras/iris"
+	"github.com/kataras/iris/v12"
 	user_request "github.com/zidni722/golang-restfull/app/dto/request/crud"
 	"github.com/zidni722/golang-restfull/app/models"
 	_interface "github.com/zidni722/golang-restfull/app/repositories/interface"
